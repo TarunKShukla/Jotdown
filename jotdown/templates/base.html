@@ -16,11 +16,18 @@
             <header class="wrapper clearfix">
                 <h1 class="title">JotDown</h1>
                 <nav>
+                    {% if current_user.is_authenticated %}
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">New Note</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('add') }}">New Note</a></li>
                         <li><a href="#">Sign Out</a></li>
                     </ul>
+                    {% else %}
+                    <ul>
+                        <li><a href="{{ url_for('login') }}">Sign In</a></li>
+                        <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    </ul>
+                    {% endif %}
                 </nav>
             </header>
         </div>
