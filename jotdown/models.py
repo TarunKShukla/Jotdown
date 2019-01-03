@@ -42,11 +42,11 @@ class Note(db.Model):
     last_modified = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def save_to_db(self):
+    def save(self):
         db.session.add(self)
         db.session.commit()
 
-    def __init__(self, title, content, last_modified, user_id):
+    def __init__(self, title, content, user_id):
         self.title = title
         self.content = content
         self.last_modified = datetime.utcnow()

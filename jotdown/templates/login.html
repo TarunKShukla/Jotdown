@@ -1,34 +1,41 @@
-
 {% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
 {% block title %}
-    <title>JotDown | SignIn</title>
+<title>JotDown |  Login </title>
 {% endblock %}
 
 {% block content %}
-<article>
-        <header>
-            <h1>article header h1</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
-        </header>
-        <section>
-            <h2>article section h2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-        </section>
-        <section>
-            <h2>article section h2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-        </section>
-        <footer>
-            <h3>article footer h3</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
-        </footer>
+<article class=flashes>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </article>
-{% endblock %} 
 
-{% block aside %}
-<p> No notes to display.</p>
+<article>
+    <h1 style="clear:both">Please login</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <table>
+            {{ render_field(form.email, size=50) }}
+            {{ render_field(form.password, size=50) }}
+            {{ render_field(form.remember_me) }}
+            
+            <tr class="submit">
+                <td></td>
+                <td><button type="submit">Log In</button></td>
+            </tr>
+        </table>
+    </form>
+</article>
 {% endblock %}
 
-                  
-
-        
+{% block aside %}
+<p>Notes will be available after logging in</p>
+{% endblock %}
